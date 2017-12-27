@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Time travel</title>
+  </head>
+
+  <body>
+    <div id="time"></div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.1.0/umd/react.development.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.1.0/umd/react-dom.development.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+     <script type="text/babel">
+     class Timer extends React.Component {
+        constructor(props) {
+         super(props);
+         this.state = { year: 0 };
+        }
+
+        tick() {
+         this.setState(prevState => ({
+           year: prevState.year + 5
+         }));
+        }
+
+        componentDidMount() {
+         this.interval = setInterval(() => this.tick(), 3);
+        }
+
+        componentWillUnmount() {
+         clearInterval(this.interval);
+        }
+
+        render() {
+         return (
+           <div>
+              {this.state.year}-years
+           </div>
+         );
+        }
+        }
+
+        ReactDOM.render(<Timer />, document.getElementById('time'));
+     </script>
+  </body>
+
+</html>
