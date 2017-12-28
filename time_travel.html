@@ -16,14 +16,15 @@
          this.state = { year: 0 };
         }
 
-        tick() {
+        fly() {
          this.setState(prevState => ({
            year: prevState.year + 5
          }));
         }
 
         componentDidMount() {
-         this.interval = setInterval(() => this.tick(), 3);
+         this.interval = setInterval(() => this.fly(), 3);
+         console.log("did mount")
         }
 
         componentWillUnmount() {
@@ -34,12 +35,13 @@
          return (
            <div>
               {this.state.year}-years
+              <h4>{this.props.traveler}  is the time traveler</h4>
            </div>
          );
         }
         }
 
-        ReactDOM.render(<Timer />, document.getElementById('time'));
+        ReactDOM.render(<Timer traveler="Keyu Lin"/>, document.getElementById('time'));
      </script>
   </body>
 
